@@ -88,8 +88,8 @@
         <div class="row gy-4">
 
           <div class="col-lg-6 content" data-aos="fade-up" data-aos-delay="100">
-            <p class="who-we-are">Who We Are</p>
-            <h3>Unleashing Potential with Creative Strategy</h3>
+            <p class="who-we-are">About Us</p>
+            <h3>About Us</h3>
             <p class="fst-italic">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
               magna aliqua.
@@ -131,7 +131,7 @@
 
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
-        <h2>How We Work</h2>
+        <h2>How To Join Us</h2>
         <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
       </div><!-- End Section Title -->
 
@@ -148,8 +148,8 @@
                     <i class="bi bi-pencil-square"></i>
                   </div>
                   <div class="step-content">
-                    <h3>Project Planning</h3>
-                    <p>Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim.</p>
+                    <h3>Proposal</h3>
+                    <p>You make about what is your community about and what you want to do.</p>
                   </div>
                 </div>
               </div>
@@ -163,8 +163,8 @@
                     <i class="bi bi-gear"></i>
                   </div>
                   <div class="step-content">
-                    <h3>Development Phase</h3>
-                    <p>Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus.</p>
+                    <h3>Evaluation</h3>
+                    <p>We evaluate your proposal and see if you are a good fit.</p>
                   </div>
                 </div>
               </div>
@@ -178,8 +178,8 @@
                     <i class="bi bi-search"></i>
                   </div>
                   <div class="step-content">
-                    <h3>Testing &amp; QA</h3>
-                    <p>Phasellus ullamcorper ipsum rutrum nunc. Nunc nonummy metus. Vestibulum volutpat pretium libero.</p>
+                    <h3>Presentation</h3>
+                    <p>We Invite you to present your proposal face-to-face.</p>
                   </div>
                 </div>
               </div>
@@ -194,7 +194,7 @@
                   </div>
                   <div class="step-content">
                     <h3>Launch &amp; Support</h3>
-                    <p>Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt.</p>
+                    <p>We launch your community and provide ongoing support.</p>
                   </div>
                 </div>
               </div>
@@ -205,10 +205,11 @@
 
       </div>
 
-    </section><!-- /How We Work Section -->
+    </section>
+    <!-- /How We Work Section -->
 
     <!-- Services Section -->
-    <section id="services" class="services section">
+    {{-- <section id="services" class="services section">
 
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
@@ -320,10 +321,11 @@
 
       </div>
 
-    </section><!-- /Services Section -->
+    </section> --}}
+    <!-- /Services Section -->
 
     <!-- Services Alt Section -->
-    <section id="services-alt" class="services-alt section">
+    {{-- <section id="services-alt" class="services-alt section">
 
       <div class="container" data-aos="fade-up" data-aos-delay="100">
 
@@ -387,10 +389,11 @@
 
       </div>
 
-    </section><!-- /Services Alt Section -->
+    </section> --}}
+    <!-- /Services Alt Section -->
 
     <!-- Call To Action 2 Section -->
-    <section id="call-to-action-2" class="call-to-action-2 section light-background">
+    {{-- <section id="call-to-action-2" class="call-to-action-2 section light-background">
 
       <div class="container" data-aos="fade-up" data-aos-delay="100">
 
@@ -432,15 +435,16 @@
 
       </div>
 
-    </section><!-- /Call To Action 2 Section -->
+    </section> --}}
+    <!-- /Call To Action 2 Section -->
 
     <!-- Portfolio Section -->
     <section id="portfolio" class="portfolio section">
 
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
-        <h2>Portfolio</h2>
-        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+        <h2>Berita Acara</h2>
+        <p>Berita Berita Acara</p>
       </div><!-- End Section Title -->
 
       <div class="container" data-aos="fade-up" data-aos-delay="100">
@@ -579,10 +583,11 @@
 
       </div>
 
-    </section><!-- /Portfolio Section -->
+    </section
+    ><!-- /Portfolio Section -->
 
     <!-- Pricing Section -->
-    <section id="pricing" class="pricing section light-background">
+    {{-- <section id="pricing" class="pricing section light-background">
 
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
@@ -713,7 +718,8 @@
 
       </div>
 
-    </section><!-- /Pricing Section -->
+    </section> --}}
+    <!-- /Pricing Section -->
 
     <!-- Faq Section -->
     <section id="faq" class="faq section">
@@ -721,37 +727,11 @@
       <div class="container" data-aos="fade-up" data-aos-delay="100">
 
         <div class="row gy-5">
-          <div class="col-lg-6" data-aos="zoom-out" data-aos-delay="200">
-            <div class="faq-contact-card">
-              <div class="card-icon">
-                <i class="bi bi-question-circle"></i>
-              </div>
-              <div class="card-content">
-                <h3>Still Have Questions?</h3>
-                <p>Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula. Vestibulum ac diam sit amet quam vehicula elementum.</p>
-                <div class="contact-options">
-                  <a href="#" class="contact-option">
-                    <i class="bi bi-envelope"></i>
-                    <span>Email Support</span>
-                  </a>
-                  <a href="#" class="contact-option">
-                    <i class="bi bi-chat-dots"></i>
-                    <span>Live Chat</span>
-                  </a>
-                  <a href="#" class="contact-option">
-                    <i class="bi bi-telephone"></i>
-                    <span>Call Us</span>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="300">
+          <div class="col-lg-12" data-aos="fade-up" data-aos-delay="300">
             <div class="faq-accordion">
               <div class="faq-item faq-active">
                 <div class="faq-header">
-                  <h3>Vivamus suscipit tortor eget felis porttitor volutpat?</h3>
+                  <h3>Frequently Asked Question</h3>
                   <i class="bi bi-chevron-down faq-toggle"></i>
                 </div>
                 <div class="faq-content">
@@ -802,7 +782,8 @@
 
       </div>
 
-    </section><!-- /Faq Section -->
+    </section>
+    <!-- /Faq Section -->
 
     <!-- Team Section -->
     <section id="team" class="team section light-background">
@@ -811,7 +792,8 @@
       <div class="container section-title" data-aos="fade-up">
         <h2>Team</h2>
         <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
-      </div><!-- End Section Title -->
+      </div>
+      <!-- End Section Title -->
 
       <div class="container" data-aos="fade-up" data-aos-delay="100">
 
@@ -905,10 +887,11 @@
 
       </div>
 
-    </section><!-- /Team Section -->
+    </section>
+    <!-- /Team Section -->
 
     <!-- Testimonials Section -->
-    <section id="testimonials" class="testimonials section">
+    {{-- <section id="testimonials" class="testimonials section">
 
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
@@ -1111,10 +1094,11 @@
 
       </div>
 
-    </section><!-- /Testimonials Section -->
+    </section> --}}
+    <!-- /Testimonials Section -->
 
     <!-- Contact Section -->
-    <section id="contact" class="contact section">
+    {{-- <section id="contact" class="contact section">
 
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
@@ -1218,8 +1202,10 @@
         </div>
 
       </div>
-    </section><!-- /Contact Section -->
+    </section> --}}
+    <!-- /Contact Section -->
 @endsection
 @section('scripts')
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="{{ asset('invent/assets/js/main.js') }}"></script>
 @endsection
