@@ -37,8 +37,8 @@
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
         </nav>
         <div>
-            <a class="btn-getstarted" href="#about">Login</a>
-            <a class="btn-getstarted" href="#about">Register</a>
+            <a class="btn-getstarted" href="/login">Login</a>
+            <a class="btn-getstarted" href="/register">Register</a>
         </div>
     </div>
 </header>

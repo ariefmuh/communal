@@ -1209,6 +1209,8 @@
 @endsection
 
 @section('scripts')
+    <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+    
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="{{ asset('invent/assets/js/main.js') }}"></script>
 @endsection
