@@ -4,6 +4,8 @@
 @endsection
 @section('styles')
     <link href="{{ asset('invent/assets/css/main.css') }}" rel="stylesheet">
+    <link href="{{ asset('invent/assets/css/main.css') }}" rel="stylesheet">
+    <link href="{{ asset('invent/assets/css/main.css') }}" rel="stylesheet">
 @endsection
 @section('content')
     <!-- Hero Section -->
@@ -1205,6 +1207,7 @@
     </section> --}}
     <!-- /Contact Section -->
 @endsection
+
 @section('scripts')
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="{{ asset('invent/assets/js/main.js') }}"></script>
