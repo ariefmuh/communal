@@ -19,8 +19,8 @@ return new class extends Migration
             $table->string('no_wa');
             $table->string('alamat');
             $table->string('email')->unique();
-            $table->string('request_file');
-            $table->string('progress');
+            $table->string('request_file')->default('file.pdf');
+            $table->string('progress')->default(0);
             $table->timestamps();
         });
     }
