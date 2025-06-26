@@ -2,10 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Blogs;
+use App\Models\Tags;
+use App\Models\Sections;
 use Illuminate\Http\Request;
-use App\Models\Homepages;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Carbon;
 
-class MainController extends Controller
+class BlogController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,11 +20,16 @@ class MainController extends Controller
      */
     public function index()
     {
-        $about = Homepages::where("name", "about")->first();
-        $about_extra = Homepages::where("name", "about_extra")->get();
-        $portofolio_extra = Homepages::where("name", "portofolio_extra")->get();
-        $brand_affiliation_extra = Homepages::where("name", "brand_affiliation_extra")->get();
-        return view("main.main", compact("about", "about_extra", "portofolio_extra", "brand_affiliation_extra"));
+        $blogs = Blogs::all();
+        return view("dashboard.blogs.main", compact("blogs"));
+    }
+
+    public function detail($id)
+    {
+        $blog = Blogs::find($id);
+        $tags = Tags::where('blog_id', $id)->get();
+        $section = Sections::where('blog_id', $id)->get();
+        return view("blogs.main", compact("blog", "tags", "section"));
     }
 
     /**
@@ -45,10 +56,10 @@ class MainController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\blogs  $blogs
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(blogs $blogs)
     {
         //
     }
@@ -56,10 +67,10 @@ class MainController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\blogs  $blogs
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(blogs $blogs)
     {
         //
     }
@@ -68,10 +79,10 @@ class MainController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\blogs  $blogs
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, blogs $blogs)
     {
         //
     }
@@ -79,10 +90,10 @@ class MainController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\blogs  $blogs
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(blogs $blogs)
     {
         //
     }

@@ -1,0 +1,53 @@
+<?php
+
+namespace Database\Seeders;
+
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+
+class SectionSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        DB::table('sections')->delete();
+
+        // Masukkan data
+        DB::table('sections')->insert([
+            ['blog_id' => '1', 'title' => '🌱 Apa Itu Komunitas Muda di Era Sekarang?', 'description' => 'Komunitas muda bukan lagi sekadar kumpulan orang dengan hobi sama. Ia telah berevolusi menjadi ruang tumbuh, tempat bertukar ide, saling belajar, hingga menciptakan solusi bagi isu-isu di sekitar. Mulai dari komunitas seni, olahraga, edukasi, teknologi, hingga sosial—semuanya menjadi wajah baru dari pergerakan generasi muda masa kini.
+
+Mereka membangun dari bawah, dari kampus, sekolah, ruang virtual, hingga pojok kota. Tidak menunggu panggung, mereka menciptakan panggungnya sendiri.
+'],
+            ['blog_id' => '1', 'title' => '📶 Koneksi Digital, Akselerator Kolaborasi', 'description' => 'Kemajuan teknologi dan konektivitas memungkinkan komunitas untuk berkembang lebih cepat dari sebelumnya. Melalui media sosial, platform kolaboratif, dan komunikasi real-time, komunitas muda kini bisa menjangkau ribuan orang dalam waktu singkat—bahkan lintas kota, provinsi, hingga negara.
+
+Namun di balik layar, semua itu tetap berakar pada hal yang sederhana: relasi dan nilai bersama.
+'],
+            ['blog_id' => '1', 'title' => '💥 Mengapa Komunitas Muda Punya Daya Ubah Besar?', 'description' => 'Autentik dan Relevan:
+Anak muda berbicara dengan bahasa mereka sendiri. Ketika komunitas berbicara, audiens mendengarkan—karena itu suara yang nyata, bukan sekadar iklan.
+Cepat Beradaptasi:
+Komunitas muda cepat menyesuaikan diri dengan tren dan isu. Mereka lincah, kreatif, dan berani mencoba pendekatan baru.
+Punya Jaringan yang Solid:
+Kepercayaan di antara anggota komunitas menciptakan efek bola salju: pesan menyebar lebih kuat dan bertahan lebih lama.
+Bukan Cuma Bersuara, Tapi Bertindak:
+Dari gerakan peduli lingkungan, kampanye kesehatan mental, hingga edukasi teknologi—komunitas muda tidak hanya bicara, tapi juga turun tangan.
+'],
+            ['blog_id' => '1', 'title' => '🔗 COMMUNAL: Ruang Baru Kolaborasi Anak Muda', 'description' => 'Melihat potensi tersebut, Telkomsel menghadirkan COMMUNAL, sebuah inisiatif untuk merangkul komunitas-komunitas muda di seluruh Kalimantan, Sulawesi, Maluku, dan Papua. Melalui program ini, komunitas terpilih akan mendapatkan dukungan kegiatan, akses kolaborasi, hingga platform digital untuk berkembang bersama.
+
+COMMUNAL hadir bukan untuk mengambil alih arah komunitas, tapi untuk menjadi jembatan. Jembatan menuju eksposur lebih luas, penguatan kapasitas, dan dampak sosial yang lebih nyata.
+'],
+
+            ['blog_id' => '1', 'title' => '✨ Kesimpulan: Komunitas Adalah Ekosistem Masa Depan', 'description' => 'Anak muda butuh ruang untuk bergerak, bukan hanya panggung untuk dilihat. Komunitas adalah ruang itu. Di sana mereka bisa menjadi diri sendiri, berbagi ide, dan menciptakan perubahan.
+
+Dan saat komunitas bertemu dengan kolaborator yang tepat—seperti COMMUNAL dari Telkomsel—maka perubahan bukan hanya mungkin, tapi pasti terjadi.
+
+Yuk, tumbuh dan bergerak bersama!
+🔗 Daftarkan komunitasmu ke COMMUNAL sekarang
+'],
+        ]);
+    }
+}
