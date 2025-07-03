@@ -22,7 +22,10 @@ class UsersTableSeeder extends Seeder
         // Masukkan data user baru
         DB::table('users')->insert([
             'name' => 'superuser',
-            'role' => 0, // 0 untuk superuser
+            'no_wa' => '081240907134',
+            'alamat' => 'Pesona Taman Dahlia 2 A17',
+            'role' => "superuser",
+            'category' => "Superuser",
             'email' => 'muharief5678@gmail.com',
             'password' => Hash::make('superuser'), // Enkripsi password 'superuser'
             'created_at' => now(),

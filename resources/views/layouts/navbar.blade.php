@@ -32,9 +32,29 @@
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
         </nav>
+
         <div>
-            <a class="btn-getstarted" href="/login">Login</a>
-            <a class="btn-getstarted" href="/register">Register</a>
+            @if (Auth::check())
+                <div class="row">
+                    @if (Auth::user()->role == 'admin')
+
+                    @endif
+                    <div class="col-6">
+                        <button class="btn btn-getstarted" href="/dashboard">Home</button>
+                    </div>
+                    <div class="col-6">
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <button type="submit" class="btn btn-danger" style="color: white;">
+                                <i class="fas fa-sign-out-alt"></i> Logout
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            @else
+                <a class="btn-getstarted" href="/login">Login</a>
+                <a class="btn-getstarted" href="/register">Register</a>
+            @endif
         </div>
     </div>
 </header>

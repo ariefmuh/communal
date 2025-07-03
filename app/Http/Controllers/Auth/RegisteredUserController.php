@@ -31,20 +31,25 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-
-
-
-        $file = $request->file('request_file');
-        $fileName = time().'_'.$file->getClientOriginalName();
-        $file->move(public_path('dashboard/request'), $fileName);
-
-        Requests::create([
-            'nama' => $request->name,
-            'email' => $request->email,
-            'alamat' => $request->alamat,
-            'no_wa' => $request->no_wa,
-            'request_file' => $fileName
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
+            'no_wa' => ['required', 'string', 'max:255'],
+            'alamat' => ['required', 'string', 'max:255'],
         ]);
+
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'no_wa' => $request->no_wa,
+            'alamat' => $request->alamat,
+            'role' => 'guest',
+            'password' => Hash::make($request->name),
+        ]);
+        event(new Registered($user));
+
+        Auth::login($user);
+
         return redirect(RouteServiceProvider::HOME);
     }
 }

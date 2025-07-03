@@ -39,7 +39,7 @@
   <div class="wrapper">
     @include('dashboard.layouts.navbar')
     @include('dashboard.layouts.sidebar')
-    <div class="content-wrapper px-5 pt-5">
+    <div class="content-wrapper px-4">
       @yield('content')
     </div>
     @include('dashboard.layouts.footer')
@@ -66,10 +66,10 @@
 
 <script>
 $(document).ready(function() {
-  
+
   $('#example1').DataTable( {
-    "responsive": false, 
-    "lengthChange": false, 
+    "responsive": false,
+    "lengthChange": false,
     "autoWidth": false,
     "scrollX": true,
     "scrollCollapse": true,

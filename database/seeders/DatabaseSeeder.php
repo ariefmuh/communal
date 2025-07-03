@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             BlogsTableSeeder::class,
             SectionSeeder::class,
             HomepageSeeder::class,
+            CategorySeeder::class,
         ]);
     }
 }

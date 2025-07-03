@@ -123,7 +123,7 @@
                     </div>
 
                     <div class="mt-4">
-                        <input type="file" name="request_file" id="request_file" class="w-full px-3 py-2 border border-green-700 rounded bg-gray-200 text-black-300 focus:outline-none focus:border-gray-500 " accept="application/pdf">
+                        <input class="w-full px-3 py-2 border border-green-700 rounded bg-gray-200 text-black-300 focus:outline-none focus:border-gray-500 " id="password" placeholder="Password" type="password" name="password" required autofocus/>
                     </div>
 
                     <div class="flex items-center justify-end mt-4">
@@ -134,8 +134,7 @@
                 </form>
 
                 <div class="mt-6 text-black-400 text-sm">
-                    <a href="#"> 2025 © </a>
-                    <a href="#" style="font-weight: 500; color:#0073A4;"> Customer Care Area Pamasuka Division </a>
+                    <a href="#"> Already have an account ? <a href="{{ route('login') }}" class="text-blue-500"> Login </a> </a>
                 </div>
             </div>
         </div>

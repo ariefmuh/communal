@@ -20,7 +20,9 @@ class HomepageSeeder extends Seeder
 
         // Masukkan data homepage
         DB::table("homepages")->insert([
-            ["name" => "about", "title" => "About us", "picture" => "", "link" => "","description" => "Program COMMUNAL mencakup beberapa elemen utama, antara lain: Kurasi Komunitas: Seleksi komunitas berdasarkan proposal dan presentasi yang mencerminkan visi, aktivitas, dan keselarasan nilai dengan Telkomsel. Pendampingan dan Dukungan: Setiap komunitas terpilih akan mendapatkan dukungan event rutin (minimal 1x per bulan), promosi, serta potensi kolaborasi lintas komunitas."],
+            ["name" => "about", "title" => "About us", "picture" => "", "link" => "","description" => "Telkomsel menghadirkan COMMUNAL, sebuah inisiatif untuk merangkul komunitas-komunitas muda di seluruh Kalimantan, Sulawesi, Maluku, dan Papua. Melalui program ini, komunitas terpilih akan mendapatkan dukungan kegiatan, akses kolaborasi, hingga platform digital untuk berkembang bersama.
+
+            <br><br>COMMUNAL hadir bukan untuk mengambil alih arah komunitas, tapi untuk menjadi jembatan. Jembatan menuju eksposur lebih luas, penguatan kapasitas, dan dampak sosial yang lebih nyata."],
             ["name" => "about_extra", "title" => "Aktivitas Kolaboratif :", "picture" => "", "link" => "","description" => "Kegiatan komunitas dalam kategori seni, olahraga, edukasi, pengembangan diri, sosial, hobi, dan digital movement."],
 
             ["name" => "about_extra", "title" => "Evaluasi Berkala :", "picture" => "", "link" => "","description" => "Kerjasama dilakukan selama 6 bulan dengan evaluasi per 3 bulan untuk menilai dampak, keberlanjutan, dan efektivitas kolaborasi."],
@@ -38,7 +40,6 @@ class HomepageSeeder extends Seeder
             ["name" => "brand_affiliation_extra", "title" => "Ilmupedia","picture" => "IlmupediaLogo.png","link" => "https://www.ilmupedia.co.id/","description" => "Ilmupedia adalah paket internet khusus yang disediakan oleh Telkomsel untuk mendukung aktivitas belajar siswa dan mahasiswa, dengan memberikan akses ke berbagai platform dan aplikasi pendidikan online"],
 
             ["name" => "portofolio_extra", "title" => "Logo Telkomsel","picture" => "LogoTelkomsel.png","link" => "https://maxsi.id/web/assets/logo-telkomsel-baru.DYhv_uL8_1T5nit.webp","description" => "Logo Telkomsel"],
-
         ]);
     }
 }

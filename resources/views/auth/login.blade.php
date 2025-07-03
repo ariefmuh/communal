@@ -102,7 +102,7 @@
                     <img alt="Logo" class="h-12 mr-2" src="{{ asset('assets/img/logo.png')}}" />
                 </div>
                 <h2 class="text-xl text-black-300 mb-6"> Sign into your account </h2>
-                <form method="POST" action="{{ route('login') }}"> 
+                <form method="POST" action="{{ route('login') }}">
                     @csrf
 
                     <!-- Username -->
@@ -121,7 +121,7 @@
                         @enderror
                     </div>
 
-                    <div class="flex items-center justify-end mt-4"> 
+                    <div class="flex items-center justify-end mt-4">
                         <x-primary-button class="ms-3">
                             {{ __('Log in') }}
                         </x-primary-button>
@@ -129,8 +129,7 @@
                 </form>
 
                 <div class="mt-6 text-black-400 text-sm">
-                    <a href="#"> 2025 © </a>
-                    <a href="#" style="font-weight: 500; color:#0073A4;"> Customer Care Area Pamasuka Division </a>
+                    <span href="#"> Haven't make an account ? <a href="{{ route('register') }}" class="text-blue-500"> Register </a> </span>
                 </div>
             </div>
         </div>

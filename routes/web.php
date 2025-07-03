@@ -26,14 +26,12 @@ Route::get('/test', function () {
 });
 
 Route::middleware('auth')->group(function () {
-    Route::get('/dsboard', [DashboardController::class, 'index'])->name('dashboard.home');
+    Route::get('/dsboard/home', [DashboardController::class, 'index'])->name('dashboard.home');
     Route::get('/dsboard/request', [RequestController::class, 'index'])->name('dashboard.request');
     Route::get('/dsboard/blogs', [BlogController::class, 'index'])->name('dashboard.blog');
     Route::post('/request/destroy/{id}', [RequestController::class, 'destroy'])->name('dashboard.request.destroy');
     Route::post('/request/update/{id}', [RequestController::class, 'update'])->name('dashboard.request.update');
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/dsboard/profile', [ProfileController::class, 'index'])->name('dashboard.profile');
 });
 
 require __DIR__.'/auth.php';
