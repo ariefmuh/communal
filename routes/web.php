@@ -29,11 +29,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard/home', [DashboardController::class, 'index'])->name('dashboard.home');
     Route::get('/dashboard/request', [RequestController::class, 'index'])->name('dashboard.request');
     Route::post('/dashboard/request/store', [RequestController::class, 'store'])->name('dashboard.request.store');
+    Route::get('/dashboard/request/edit/{id}', [RequestController::class, 'edit'])->name('dashboard.request.edit');
+    Route::put('/dashboard/request/update/{id}', [RequestController::class, 'updateRequest'])->name('dashboard.request.update');
     Route::get('/dashboard/blogs', [BlogController::class, 'index'])->name('dashboard.blog');
-    Route::post('/request/destroy/{id}', [RequestController::class, 'destroy'])->name('dashboard.request.destroy');
-    Route::post('/request/update/{id}', [RequestController::class, 'update'])->name('dashboard.request.update');
+    Route::delete('/request/destroy/{id}', [RequestController::class, 'destroy'])->name('dashboard.request.destroy');
+    Route::patch('/request/accept/{id}', [RequestController::class, 'accept'])->name('dashboard.request.accept');
     Route::get('/dashboard/profile', [ProfileController::class, 'index'])->name('dashboard.profile');
     Route::post('/dashboard/profile/update', [ProfileController::class, 'update'])->name('dashboard.profile.update');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
