@@ -26,14 +26,14 @@ Route::get('/test', function () {
 });
 
 Route::middleware('auth')->group(function () {
-    Route::get('/dsboard/home', [DashboardController::class, 'index'])->name('dashboard.home');
-    Route::get('/dsboard/request', [RequestController::class, 'index'])->name('dashboard.request');
-    Route::post('/dsboard/request/store', [RequestController::class, 'store'])->name('dashboard.request.store');
-    Route::get('/dsboard/blogs', [BlogController::class, 'index'])->name('dashboard.blog');
+    Route::get('/dashboard/home', [DashboardController::class, 'index'])->name('dashboard.home');
+    Route::get('/dashboard/request', [RequestController::class, 'index'])->name('dashboard.request');
+    Route::post('/dashboard/request/store', [RequestController::class, 'store'])->name('dashboard.request.store');
+    Route::get('/dashboard/blogs', [BlogController::class, 'index'])->name('dashboard.blog');
     Route::post('/request/destroy/{id}', [RequestController::class, 'destroy'])->name('dashboard.request.destroy');
     Route::post('/request/update/{id}', [RequestController::class, 'update'])->name('dashboard.request.update');
-    Route::get('/dsboard/profile', [ProfileController::class, 'index'])->name('dashboard.profile');
-    Route::post('/dsboard/profile/update', [ProfileController::class, 'update'])->name('dashboard.profile.update');
+    Route::get('/dashboard/profile', [ProfileController::class, 'index'])->name('dashboard.profile');
+    Route::post('/dashboard/profile/update', [ProfileController::class, 'update'])->name('dashboard.profile.update');
 });
 
 require __DIR__.'/auth.php';

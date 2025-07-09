@@ -38,7 +38,7 @@ Request Dashboard
                                 class="btn btn-primary btn-sm view-pdf"
                                 data-bs-toggle="modal"
                                 data-bs-target="#pdfModal{{$b->id}}"
-                                data-file="{{ asset('dashboard/request/' . $b->request_file) }}">
+                                data-file="{{ asset('assets/dashboard/request/' . $b->request_file) }}">
                                 View Picture
                             </button>
                         </td>
@@ -70,7 +70,7 @@ Request Dashboard
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <img id="PictureViewer" src="{{ asset('dashboard/blogs/' . $b->picture) }}" width="100%" height="600px" frameborder="0"></iframe>
+                            <img id="PictureViewer" src="{{ asset('assets/dashboard/blogs/' . $b->picture) }}" width="100%" height="600px" frameborder="0"></iframe>
                         </div>
                     </div>
                 </div>
