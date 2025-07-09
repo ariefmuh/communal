@@ -17,7 +17,14 @@ class RequestController extends Controller
      */
     public function index()
     {
-        $requests = Requests::all();
+        if (auth()->user()->role == "guest") {
+            $requests = Requests::join('users', 'users.id', '=', 'requests.user_id')
+                ->select('requests.*', 'users.name', 'users.alamat', 'users.no_wa')
+                ->get();
+        } else {
+            $requests = Requests::all();
+        }
+
         return view("dashboard.request.main", compact("requests"));
     }
 
@@ -39,7 +46,21 @@ class RequestController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'kategori' => 'required|string|max:255',
+            'proposal' => 'required|file|mimes:pdf|max:32768',
+        ]);
+
+        $data = new Requests();
+        $data->user_id = auth()->user()->id;
+        $data->category = $request->kategori;
+        $fileName = $request->proposal->getClientOriginalName() . "-" . time() . '.' . $request->proposal->extension();
+        $request->proposal->move('assets/pdf/requests', $fileName);
+        $data->proposal = $fileName;
+        $data->progress = 0;
+
+        $data->save();
+        return redirect()->route('dashboard.request');
     }
 
     /**

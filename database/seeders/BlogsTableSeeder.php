@@ -20,6 +20,7 @@ class BlogsTableSeeder extends Seeder
 
         // Masukkan data blog
         DB::table('blogs')->insert([
+            'user_id' => '1',
             'title' => 'Komunitas Muda, Motor Perubahan di Era Digital',
             'author' => 'Test',
             'picture' => 'blog1.jpg',

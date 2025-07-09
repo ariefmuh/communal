@@ -89,52 +89,104 @@ Dashboard Communal
                     <div class="card-header p-2">
                         <ul class="nav nav-pills">
                             <li class="nav-item">
-                                <a class="nav-link active" href="#settings" data-toggle="tab">Settings</a>
+                                <a class="nav-link active" href="#profile" data-toggle="tab">Profile</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#settings" data-toggle="tab">Settings</a>
+                            </li>
+                            @if (Auth::user()->role == 'guest')
+                            <li class="nav-item">
+                                <a class="nav-link" href="#request" data-toggle="tab">Request</a>
+                            </li>
+                            @endif
                         </ul>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
                         <div class="tab-content">
-                            <div class="active tab-pane" id="settings">
-                                <form class="form-horizontal">
+                            <div class="active tab-pane" id="profile">
+                                <div class="row mb-3">
+                                    <div class="col-3 fw-bold">Nama</div>
+                                    <div class="col-6">: {{ Auth::user()->name }}</div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-3 fw-bold">Nomor Whatsapp</div>
+                                    <div class="col-6">: {{ Auth::user()->no_wa }}</div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-3 fw-bold">Alamat</div>
+                                    <div class="col-6">: {{ Auth::user()->alamat }}</div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-3 fw-bold">Role</div>
+                                    <div class="col-6">: {{ Auth::user()->role }}</div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-3 fw-bold">Kategori</div>
+                                    <div class="col-6">: {{ Auth::user()->category }}</div>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="settings">
+                                <form id="update-profile-form" class="form-horizontal" action="{{ route('dashboard.profile.update') }}" method="POST" enctype="multipart/form-data">
+                                    @csrf
                                     <div class="form-group row">
                                         <label for="inputName" class="col-sm-2 col-form-label">Name</label>
                                         <div class="col-sm-10">
-                                            <input type="email" class="form-control" id="inputName" placeholder="Name">
+                                            <input type="text" name="name" class="form-control" id="inputName" placeholder="Name" value="{{ Auth::user()->name }}">
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
+                                        <label for="no_wa" class="col-sm-2 col-form-label">Nomor Whatsapp</label>
                                         <div class="col-sm-10">
-                                            <input type="email" class="form-control" id="inputEmail" placeholder="Email">
+                                            <input type="text" name="no_wa" class="form-control" id="no_wa" placeholder="08xxxxxxxxxx" value="{{ Auth::user()->no_wa }}">
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="inputName2" class="col-sm-2 col-form-label">Name</label>
+                                        <label for="alamat" class="col-sm-2 col-form-label">Alamat</label>
                                         <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="inputName2" placeholder="Name">
+                                            <input type="text" name="alamat" class="form-control" id="alamat" placeholder="Name" value="{{ Auth::user()->alamat }}">
                                         </div>
                                     </div>
                                     <div class="form-group row">
-                                        <label for="inputExperience" class="col-sm-2 col-form-label">Experience</label>
+                                        <label for="image" class="col-sm-2 col-form-label">Profile Picture</label>
                                         <div class="col-sm-10">
-                                            <textarea class="form-control" id="inputExperience" placeholder="Experience"></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="form-group row">
-                                        <label for="inputSkills" class="col-sm-2 col-form-label">Skills</label>
-                                        <div class="col-sm-10">
-                                            <input type="text" class="form-control" id="inputSkills" placeholder="Skills">
+                                            <input type="file" name="image" class="form-control" id="image" value="{{ Auth::user()->image }}" accept="image/*">
+                                            @if(Auth::user()->image)
+                                                <img src="{{ asset('assets/img/profile/'.Auth::user()->image) }}" width="100">
+                                            @endif
                                         </div>
                                     </div>
                                     <div class="form-group row">
                                         <div class="offset-sm-2 col-sm-10">
-                                            <button type="submit" class="btn btn-danger">Submit</button>
+                                            <button type="button" class="btn btn-danger" id="btn-submit">Submit</button>
                                         </div>
                                     </div>
                                 </form>
                             </div>
+                            @if (Auth::user()->role == 'guest')
+                            <div class="tab-pane" id="request">
+                                <form id="store-request-form" class="form-horizontal" action="{{ route('dashboard.request.store') }}" method="POST" enctype="multipart/form-data">
+                                    @csrf
+                                    <div class="form-group row">
+                                        <label for="Kategori" class="col-sm-2 col-form-label">Kategori</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" name="kategori" class="form-control" id="Kategori" placeholder="Arts, Sports, Music">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="proposal" class="col-sm-2 col-form-label">Proposal</label>
+                                        <div class="col-sm-10">
+                                            <input type="file" name="proposal" class="form-control" id="proposal" accept="application/pdf">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="offset-sm-2 col-sm-10">
+                                            <button type="button" class="btn btn-danger" id="btn-submit-request">Submit</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            @endif
                         </div>
                         <!-- /.tab-content -->
                     </div>
@@ -149,4 +201,42 @@ Dashboard Communal
     <!-- /.container-fluid -->
 </section>
 <!-- /.content -->
+@endsection
+@section('scripts')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+document.getElementById('btn-submit').addEventListener('click', function (e) {
+    Swal.fire({
+        title: 'Update Profile',
+        text: "Apakah kamu yakin ingin menyimpan perubahan?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#aaa',
+        confirmButtonText: 'Ya, simpan!',
+        cancelButtonText: 'Batal'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            document.getElementById('update-profile-form').submit();
+        }
+    });
+});
+document.getElementById('btn-submit-request').addEventListener('click', function (e) {
+    Swal.fire({
+        title: 'Request Proposal',
+        text: "Apakah kamu yakin ingin mengirim proposal?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#aaa',
+        confirmButtonText: 'Ya, Kirim!',
+        cancelButtonText: 'Batal'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            document.getElementById('store-request-form').submit();
+        }
+    });
+});
+</script>
+
 @endsection

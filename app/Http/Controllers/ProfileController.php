@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ProfileUpdateRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
-use Illuminate\View\View;
+use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
@@ -27,17 +29,35 @@ class ProfileController extends Controller
     /**
      * Update the user's profile information.
      */
-    public function update(ProfileUpdateRequest $request): RedirectResponse
+    public function update(Request $request)
     {
-        $request->user()->fill($request->validated());
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'no_wa' => 'nullable|string|max:20',
+            'alamat' => 'nullable|string|max:255',
+            'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:8192',
+        ]);
 
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
+        $user = Auth::user();
+        $user->name = $request->name;
+        $user->no_wa = $request->no_wa;
+        $user->alamat = $request->alamat;
+
+        if ($request->hasFile('image')) {
+            // hapus file lama jika ada
+            if ($user->image) {
+                Storage::delete('assets/img/profile/' . $user->image);
+            }
+            $imgName = $request->file('image');
+            $originalName = $imgName->getClientOriginalName();
+            $filename = $originalName . "-" . time() . '.' . $request->image->extension();
+            $user->image = $filename;
+            $request->image->move('assets/img/profile/', $filename);
         }
 
-        $request->user()->save();
+        $user->save();
 
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+        return redirect()->back()->with('success', 'Profil berhasil diperbarui!');
     }
 
     /**

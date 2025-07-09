@@ -25,9 +25,33 @@ class UsersTableSeeder extends Seeder
             'no_wa' => '081240907134',
             'alamat' => 'Pesona Taman Dahlia 2 A17',
             'role' => "superuser",
-            'category' => "Superuser",
+            'category' => "Programming",
             'email' => 'muharief5678@gmail.com',
             'password' => Hash::make('superuser'), // Enkripsi password 'superuser'
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        DB::table('users')->insert([
+            'name' => 'test',
+            'no_wa' => '0123456789',
+            'alamat' => 'The Earth',
+            'role' => "guest",
+            'category' => "",
+            'email' => 'example@gmail.com',
+            'password' => Hash::make('testing123'),
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        DB::table('users')->insert([
+            'name' => 'Team Leader',
+            'no_wa' => '0123456789',
+            'alamat' => 'The Earth',
+            'role' => "TL",
+            'category' => "Arts",
+            'email' => 'leader@gmail.com',
+            'password' => Hash::make('testing123'),
             'created_at' => now(),
             'updated_at' => now(),
         ]);

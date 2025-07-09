@@ -44,6 +44,7 @@
     </div>
     @include('dashboard.layouts.footer')
   </div>
+  @yield('scripts')
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 
 <script src="{{ asset('adminLTE/plugins/jquery/jquery.min.js')}}"></script>
@@ -64,24 +65,6 @@
 <script src="https://cdn.datatables.net/v/bs4-4.6.0/jq-3.7.0/jszip-3.10.1/dt-2.0.1/b-3.0.0/b-colvis-3.0.0/b-html5-3.0.0/b-print-3.0.0/fc-5.0.0/fh-4.0.0/r-3.0.0/sc-2.4.0/sb-1.7.0/sp-2.3.0/sr-1.4.0/datatables.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
 
-<script>
-$(document).ready(function() {
-
-  $('#example1').DataTable( {
-    "responsive": false,
-    "lengthChange": false,
-    "autoWidth": false,
-    "scrollX": true,
-    "scrollCollapse": true,
-    "paging": false,
-    "layout": {
-      "topStart": {
-        "buttons": ["copy", "csv", "excel", "print"]
-      }
-    }
-  })
-});
-</script>
 
 </body>
 </html>

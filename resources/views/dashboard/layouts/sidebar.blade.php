@@ -16,17 +16,17 @@
                     </a>
                 </li>
             </ul>
+            @if (Auth::user()->role == 'superuser' || Auth::user()->role == 'guest')
+                <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                    <li class="nav-item @if (Route::currentRouteName() == 'dashboard.request') active @endif">
+                        <a href="{{ route('dashboard.request') }}" class="nav-link @if (Route::currentRouteName() == 'dashboard.request') active @endif">
+                            <i class="fa-solid fa-house nav-icon"></i>
+                            <p>Request</p>
+                        </a>
+                    </li>
+                </ul>
+            @endif
             @if (Auth::user()->role != 'guest')
-                @if (Auth::user()->role == 'superuser')
-                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                        <li class="nav-item @if (Route::currentRouteName() == 'dashboard.request') active @endif">
-                            <a href="{{ route('dashboard.request') }}" class="nav-link @if (Route::currentRouteName() == 'dashboard.request') active @endif">
-                                <i class="fa-solid fa-house nav-icon"></i>
-                                <p>Request</p>
-                            </a>
-                        </li>
-                    </ul>
-                @endif
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                     <li class="nav-item @if (Route::currentRouteName() == 'dashboard.blog') active @endif">
                         <a href="{{ route('dashboard.blog') }}" class="nav-link @if (Route::currentRouteName() == 'dashboard.blog') active @endif">

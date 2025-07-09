@@ -8,11 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Requests extends Model
 {
     protected $fillable = [
-        'nama',
-        'no_wa',
-        'alamat',
-        'email',
-        'request_file',
+        'user_id',
+        'category',
+        'proposal',
         'progress',
     ];
 

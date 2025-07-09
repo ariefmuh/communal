@@ -24,7 +24,6 @@ Request Dashboard
                     <th>Nama</th>
                     <th>Nomor WA</th>
                     <th>Alamat</th>
-                    <th>Email</th>
                     <th>File PDF</th>
                     <th>Progress</th>
                     <th>Action</th>
@@ -34,7 +33,7 @@ Request Dashboard
                 @foreach ($requests as $r)
                     <tr>
                         <td>{{ $r->id }}</td>
-                        <td>{{ $r->nama }}</td>
+                        <td>{{ $r->name }}</td>
                         <td>{{ $r->no_wa }}</td>
                         <td>{{ $r->alamat }}</td>
                         <td>{{ $r->email }}</td>
@@ -43,7 +42,7 @@ Request Dashboard
                                 class="btn btn-primary btn-sm view-pdf"
                                 data-bs-toggle="modal"
                                 data-bs-target="#pdfModal{{$r->id}}"
-                                data-file="{{ asset('dashboard/request/' . $r->request_file) }}">
+                                data-file="{{ asset('assets/pdf/requests/' . $r->proposal) }}">
                                 View PDF
                             </button>
                         </td>
@@ -78,7 +77,7 @@ Request Dashboard
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <iframe id="pdfViewer" src="{{ asset('dashboard/request/' . $r->request_file) }}" width="100%" height="600px" frameborder="0"></iframe>
+                            <iframe id="pdfViewer" src="{{ asset('assets/pdf/requests/' . $r->proposal) }}" width="100%" height="600px" frameborder="0"></iframe>
                         </div>
                     </div>
                 </div>

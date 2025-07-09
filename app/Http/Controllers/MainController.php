@@ -2,11 +2,31 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Http;
 use Illuminate\Http\Request;
 use App\Models\Homepages;
 
 class MainController extends Controller
 {
+
+    function translateText($text, $targetLang = 'en')
+    {
+        $apiKey = env('GOOGLE_TRANSLATE_API_KEY');
+
+        $response = Http::post("https://translation.googleapis.com/language/translate/v2", [
+            'q' => $text,
+            'target' => $targetLang,
+            'format' => 'text',
+            'key' => $apiKey,
+        ]);
+
+        if ($response->successful()) {
+            return $response->json()['data']['translations'][0]['translatedText'];
+        }
+
+        return 'Translation failed';
+    }
+
     /**
      * Display a listing of the resource.
      *

@@ -15,11 +15,9 @@ return new class extends Migration
     {
         Schema::create('requests', function (Blueprint $table) {
             $table->id();
-            $table->string('nama');
-            $table->string('no_wa');
-            $table->string('alamat');
-            $table->string('email')->unique();
-            $table->string('request_file')->default('file.pdf');
+            $table->string('user_id');
+            $table->string('category');
+            $table->string('proposal')->default('file.pdf');
             $table->string('progress')->default(0);
             $table->timestamps();
         });
