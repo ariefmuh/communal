@@ -8,7 +8,7 @@
         <nav id="navmenu" class="navmenu">
             <ul>
                 <li><a href="{{ route('home') }}" class="{{ Route::currentRouteName() == 'home' ? 'active' : '' }}">Home</a></li>
-                <li><a href="#team">Our Program</a></li>
+                <li><a href="{{ route('home') }}#team">Our Program</a></li>
                 <li><a href="{{ route('blogs', ['id' => 1]) }}">Blogs</a></li>
             </ul>
             <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>

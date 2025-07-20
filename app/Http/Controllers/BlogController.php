@@ -39,7 +39,9 @@ class BlogController extends Controller
      */
     public function create()
     {
-        //
+        $today = Carbon::now()->format('Y-m-d');
+        $author = auth()->user()->name;
+        return view("dashboard.blogs.create", compact("today", "author"));
     }
 
     /**

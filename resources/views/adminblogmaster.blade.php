@@ -27,9 +27,22 @@
         @yield('styles')
     </head>
     <body>
-        <!-- Responsive navbar-->
-        @include('layouts.navbar')
-        <!-- Page content-->
+
+
+        <header id="header" class="header d-flex align-items-center fixed-top">
+            <div class="container position-relative d-flex align-items-center justify-content-between">
+                <a href="#" class="logo d-flex align-items-center me-auto me-xl-0">
+                    <img src="{{ asset('assets/img/logo.png') }}" alt="Logo">
+                </a>
+                <div class="d-flex gap-2">
+                    <a href="/dashboard/home" class="btn btn-primary">Home</a>
+                    <button type="button" class="btn btn-success" id="saveChanges">
+                        Save Changes
+                    </button>
+                </div>
+            </div>
+        </header>
+
         <main style="margin-top: 100px;">
             <div class="container mt-5">
                 @yield('content')
