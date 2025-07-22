@@ -156,9 +156,12 @@ class BlogController extends Controller
      * @param  \App\Models\blogs  $blogs
      * @return \Illuminate\Http\Response
      */
-    public function edit(blogs $blogs)
+    public function edit($id)
     {
-        //
+        $blog = Blogs::find($id);
+        $tags = Tags::where('blog_id', $id)->get();
+        $section = Sections::where('blog_id', $id)->get();
+        return view("dashboard.blogs.edit", compact("blog", "tags", "section"));
     }
 
     /**
@@ -168,9 +171,33 @@ class BlogController extends Controller
      * @param  \App\Models\blogs  $blogs
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, blogs $blogs)
+    public function update(Request $request)
     {
-        //
+        $blog = Blogs::find($request->id);
+        $blog->title = $request->title;
+        $blog->author = $request->author;
+        $blog->opening = $request->description;
+        $blog->save();
+        $tags = Tags::where('blog_id', $request->id)->get();
+        $tagData = [];
+        foreach ($tags as $tag) {
+            $tagData[] = [
+                'blog_id' => $request->id,
+                'name_tag' => $request->tags,
+            ];
+        }
+        DB::table('tags')->insert($tagData);
+        $sections = Sections::where('blog_id', $request->id)->get();
+        $sectionData = [];
+        foreach ($sections as $section) {
+            $sectionData[] = [
+                'blog_id' => $request->id,
+                'title' => $request->sections['title'],
+                'description' => $request->sections['description'],
+            ];
+        }
+        DB::table('sections')->insert($sectionData);
+        return response()->json(['message' => 'Blog updated successfully'], 200);
     }
 
     /**

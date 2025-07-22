@@ -42,7 +42,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard/blogs/create', [BlogController::class, 'create'])->name('dashboard.blog.create');
     Route::post('/dashboard/blogs/store', [BlogController::class, 'store'])->name('dashboard.blog.store');
     Route::get('/dashboard/blogs/edit/{id}', [BlogController::class, 'edit'])->name('dashboard.blog.edit');
-    Route::put('/dashboard/blogs/update/{id}', [BlogController::class, 'update'])->name('dashboard.blog.update');
+    Route::post('/dashboard/blogs/update/{id}', [BlogController::class, 'update'])->name('dashboard.blog.update');
     Route::delete('/dashboard/blogs/destroy/{id}', [BlogController::class, 'destroy'])->name('dashboard.blog.destroy');
     Route::get('/dashboard/blogs/detail/{id}', [BlogController::class, 'detail'])->name('dashboard.blog.detail');
     Route::get('/dashboard/blogs/preview/{id}', [BlogController::class, 'preview'])->name('dashboard.blog.preview');
