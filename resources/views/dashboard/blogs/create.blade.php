@@ -32,7 +32,7 @@
     <div class="mb-3">
         <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addSectioneModal">Add New Section</button>
     </div>
-    <div class="mb-4" id="section">
+    <div class="mb-4" id="sections">
         <div>
             <h2 class="fw-bold mt-4 fs-5">Section Title</h2>
             <p class="mb-4">Section Description</p>
@@ -55,7 +55,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" id="saveNewImage">Save changes</button>
+                <button type="button" class="btn btn-primary" id="saveNewImage">Save Image</button>
             </div>
         </div>
     </div>
@@ -76,7 +76,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" id="saveNewTitle">Save changes</button>
+                <button type="button" class="btn btn-primary" id="saveNewTitle">Save Title</button>
             </div>
         </div>
     </div>
@@ -97,7 +97,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" id="saveNewAuthor">Save changes</button>
+                <button type="button" class="btn btn-primary" id="saveNewAuthor">Save Author</button>
             </div>
         </div>
     </div>
@@ -118,7 +118,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" id="saveNewDescription">Save changes</button>
+                <button type="button" class="btn btn-primary" id="saveNewDescription">Save Description</button>
             </div>
         </div>
     </div>
@@ -139,7 +139,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" id="saveNewTags">Save changes</button>
+                <button type="button" class="btn btn-primary" id="saveNewTags">Save Tags</button>
             </div>
         </div>
     </div>
@@ -164,7 +164,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" id="saveNewSection">Save changes</button>
+                <button type="button" class="btn btn-primary" id="saveNewSection">Add New Section</button>
             </div>
         </div>
     </div>
@@ -175,6 +175,11 @@
     <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="{{ asset('invent/assets/js/main.js') }}"></script>
+    <script>
+        function removeSection(sectionId) {
+            $(`#section-${sectionId}`).remove();
+        }
+    </script>
     <script>
         $(document).ready(function() {
             $('#saveNewImage').click(function() {
@@ -216,19 +221,59 @@
                     $('#addTagsModal').modal('hide');
                 }
             });
+            newSectionId = 0;
             $('#saveNewSection').click(function() {
                 var newSectionTitle = $('#newSectionTitle').val();
                 var newSectionDescription = $('#newSectionDescription').val();
                 if (newSectionTitle !== '' && newSectionDescription !== '') {
                     var newSectionHtml = `
-                        <div>
-                            <h2 class="fw-bold mt-4 fs-5">${newSectionTitle}</h2>
-                            <p class="mb-4">${newSectionDescription}</p>
+                        <div class="blog-section" id="section-${newSectionId}">
+                            <h2 class="fw-bold mt-4 fs-5 blog-section-title">${newSectionTitle}</h2>
+                            <p class="mb-4 blog-section-description">${newSectionDescription}</p>
+                            <button class="btn btn-danger" onclick="removeSection(${newSectionId++})">Remove</button>
                         </div>
                     `;
                     $('#sections').append(newSectionHtml);
                     $('#addSectioneModal').modal('hide');
                 }
+            });
+            $('#saveChanges').click(function() {
+                var newImageUrl = $('#newImage')[0].files[0];
+                var newTitle = $('#newTitle').val();
+                var newAuthor = $('#newAuthor').val();
+                var newDescription = $('#newDescription').val();
+                var tagsArray = $('#newTags').val().split(',').map(tag => tag.trim());
+                var sections = [];
+
+                $('.blog-section').each(function() {
+                    sections.push({
+                        title: $(this).find('.blog-section-title').text(),
+                        description: $(this).find('.blog-section-description').text()
+                    });
+                });
+
+                var formData = new FormData();
+                formData.append('_token', '{{ csrf_token() }}');
+                formData.append('image', newImageUrl);
+                formData.append('title', newTitle);
+                formData.append('author', newAuthor);
+                formData.append('description', newDescription);
+                formData.append('tags', JSON.stringify(tagsArray));
+                formData.append('sections', JSON.stringify(sections));
+                console.log(formData);
+                $.ajax({
+                    url: '{{ route("dashboard.blog.store") }}',
+                    method: 'POST',
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function(response) {
+                        alert('Changes saved successfully!');
+                    },
+                    error: function(xhr, status, error) {
+                        alert('An error occurred while saving changes.');
+                    }
+                });
             });
         });
     </script>

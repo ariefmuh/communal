@@ -10,6 +10,8 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class BlogController extends Controller
 {
@@ -52,7 +54,89 @@ class BlogController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $tags = $request->input('tags');
+        $sections = $request->input('sections');
+
+        if (is_string($tags)) {
+            $tags = json_decode($tags, true);
+            $request->merge(['tags' => $tags]);
+        }
+
+        if (is_string($sections)) {
+            $sections = json_decode($sections, true);
+            $request->merge(['sections' => $sections]);
+        }
+
+        $request->validate([
+            'image' => 'required|image|max:5120', // max 5MB
+            'title' => 'required|string|max:255',
+            'author' => 'required|string|max:255',
+            'description' => 'required|string',
+            'tags' => 'required|array',
+            'tags.*' => 'string|max:255',
+            'sections' => 'required|array',
+            'sections.*.title' => 'required|string|max:255',
+            'sections.*.description' => 'required|string',
+        ]);
+
+        DB::beginTransaction();
+
+        try {
+
+            if ($request->hasFile('image')) {
+                $file = $request->file('image');
+                $fileName = time() . '_' . $file->getClientOriginalName(); // or use Str::uuid().'.ext' for unique names
+                $file->move(public_path('assets/img/blogs'), $fileName); // Move to public/assets/img/blog/
+            } else {
+                return response()->json(['error' => 'No image uploaded.'], 400);
+            }
+
+            // Insert into blogs
+            $blogId = DB::table('blogs')->insertGetId([
+                'user_id' => Auth::id() ?? '1',
+                'title' => $request->input('title'),
+                'author' => $request->input('author'),
+                'picture' => $fileName, // Only the filename is stored
+                'opening' => $request->input('description'),
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]);
+
+
+            // Insert tags
+            $tags = $request->input('tags');
+            $tagData = [];
+            foreach ($tags as $tag) {
+                $tagData[] = [
+                    'blog_id' => $blogId,
+                    'name_tag' => $tag,
+                ];
+            }
+            DB::table('tags')->insert($tagData);
+
+            // Insert sections
+            $sections = $request->input('sections');
+            $sectionData = [];
+            foreach ($sections as $section) {
+                $sectionData[] = [
+                    'blog_id' => $blogId,
+                    'title' => $section['title'],
+                    'description' => $section['description'],
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ];
+            }
+            DB::table('sections')->insert($sectionData);
+
+            DB::commit();
+
+            return response()->json(['message' => 'Blog created successfully'], 201);
+
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
     }
 
     /**

@@ -70,7 +70,7 @@ Request Dashboard
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <img id="PictureViewer" src="{{ asset('assets/dashboard/blogs/' . $b->picture) }}" width="100%" height="600px" frameborder="0"></iframe>
+                            <img id="PictureViewer" src="{{ asset('assets/img/blogs/' . $b->picture) }}" width="100%" height="600px" frameborder="0"></iframe>
                         </div>
                     </div>
                 </div>

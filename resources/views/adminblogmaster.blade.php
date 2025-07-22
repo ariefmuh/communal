@@ -24,6 +24,16 @@
         <script src="https://cdn.jsdelivr.net/npm/imagesloaded@5.0.0/imagesloaded.pkgd.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha512-Zq2BOxyhvnRFXu0+WE6ojpZLOU2jdnqbrM1hmVdGzyeCa1DgM3X5Q4A/Is9xA1IkbUeDd7755dNNI/PzSf2Pew==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
+        <style>
+            body {
+                display: flex;
+                flex-direction: column;
+                min-height: 100vh;
+            }
+            main {
+                flex: 1;
+            }
+        </style>
         @yield('styles')
     </head>
     <body>
@@ -49,8 +59,10 @@
             </div>
         </main>
 
-        <footer class="py-5 bg-dark">
-            <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Communal 2025</p></div>
+        <footer class="py-5 bg-dark mt-auto">
+            <div class="container">
+                <p class="m-0 text-center text-white">Copyright &copy; Communal 2025</p>
+            </div>
         </footer>
         <!-- Bootstrap core JS-->
         @yield('scripts')
