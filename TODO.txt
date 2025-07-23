@@ -1,6 +1,5 @@
 TO DO LIST :
 -Update CMS,
 -Create email for communal
--Create 2 dummy blog
 -Create a homepage for all the blog
 -<3 Good luck Myself in the future
