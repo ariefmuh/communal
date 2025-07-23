@@ -5,6 +5,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\RequestController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\MainController;
+use App\Http\Controllers\HomepageController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -49,6 +50,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard/blogs/preview/{id}/edit', [BlogController::class, 'editPreview'])->name('dashboard.blog.preview.edit');
     Route::put('/dashboard/blogs/preview/{id}/update', [BlogController::class, 'updatePreview'])->name('dashboard.blog.preview.update');
 
+    // Dashboard Homepage
+    Route::get('/dashboard/homepage', [HomepageController::class, 'index'])->name('dashboard.homepage');
+    Route::post('/dashboard/homepage/update', [HomepageController::class, 'update'])->name('dashboard.homepage.update');
 
     Route::get('/dashboard/profile', [ProfileController::class, 'index'])->name('dashboard.profile');
     Route::post('/dashboard/profile/update', [ProfileController::class, 'update'])->name('dashboard.profile.update');
