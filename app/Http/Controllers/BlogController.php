@@ -71,7 +71,6 @@ class BlogController extends Controller
         $request->validate([
             'image' => 'required|image|max:5120', // max 5MB
             'title' => 'required|string|max:255',
-            'author' => 'required|string|max:255',
             'description' => 'required|string',
             'tags' => 'required|array',
             'tags.*' => 'string|max:255',
@@ -96,7 +95,7 @@ class BlogController extends Controller
             $blogId = DB::table('blogs')->insertGetId([
                 'user_id' => Auth::id() ?? '1',
                 'title' => $request->input('title'),
-                'author' => $request->input('author'),
+                'author' => auth()->user()->name,
                 'picture' => $fileName, // Only the filename is stored
                 'opening' => $request->input('description'),
                 'created_at' => now(),
@@ -104,8 +103,7 @@ class BlogController extends Controller
             ]);
 
 
-            // Insert tags
-            $tags = $request->input('tags');
+            // Insert new tags
             $tagData = [];
             foreach ($tags as $tag) {
                 $tagData[] = [
@@ -131,8 +129,7 @@ class BlogController extends Controller
 
             DB::commit();
 
-            return response()->json(['message' => 'Blog created successfully'], 201);
-
+            return response()->json(['message' => 'Blog created successfully', 'redirect' => route('dashboard.blog')], 201);
         } catch (\Exception $e) {
             DB::rollBack();
             return response()->json(['error' => $e->getMessage()], 500);
@@ -168,46 +165,124 @@ class BlogController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\blogs  $blogs
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
-        $blog = Blogs::find($request->id);
-        $blog->title = $request->title;
-        $blog->author = $request->author;
-        $blog->opening = $request->description;
-        $blog->save();
-        $tags = Tags::where('blog_id', $request->id)->get();
-        $tagData = [];
-        foreach ($tags as $tag) {
-            $tagData[] = [
-                'blog_id' => $request->id,
-                'name_tag' => $request->tags,
-            ];
+        try {
+            DB::beginTransaction();
+
+            $tags = $request->input('tags');
+            $sections = $request->input('sections');
+
+            if (is_string($tags)) {
+                $tags = json_decode($tags, true);
+                $request->merge(['tags' => $tags]);
+            }
+
+            if (is_string($sections)) {
+                $sections = json_decode($sections, true);
+                $request->merge(['sections' => $sections]);
+            }
+
+            $request->validate([
+                'title' => 'required|string|max:255',
+                'description' => 'required|string',
+                'tags' => 'required|array',
+                'tags.*' => 'string|max:255',
+                'sections' => 'required|array',
+                'sections.*.title' => 'required|string|max:255',
+                'sections.*.description' => 'required|string',
+            ]);
+
+            $blog = Blogs::findOrFail($id);
+
+            // Handle image update if provided
+            if ($request->hasFile('image')) {
+                $request->validate([
+                    'image' => 'image|max:5120', // max 5MB
+                ]);
+
+                // Delete old image if exists
+                if ($blog->picture && file_exists(public_path('assets/img/blogs/' . $blog->picture))) {
+                    unlink(public_path('assets/img/blogs/' . $blog->picture));
+                }
+
+                $fileName = time() . '_' . $request->file('image')->getClientOriginalName();
+                $request->file('image')->move(public_path('assets/img/blogs'), $fileName);
+                $blog->picture = $fileName;
+            }
+
+            // Update blog
+            $blog->update([
+                'user_id' => auth()->user()->id,
+                'title' => $request->input('title'),
+                'author' => auth()->user()->name,
+                'opening' => $request->input('description'),
+            ]);
+
+            // Delete existing tags and sections
+            Tags::where('blog_id', $id)->delete();
+            Sections::where('blog_id', $id)->delete();
+
+            // Insert new tags
+            $tagData = [];
+            foreach ($tags as $tag) {
+                $tagData[] = [
+                    'blog_id' => $id,
+                    'name_tag' => trim($tag),
+                ];
+            }
+            DB::table('tags')->insert($tagData);
+
+            // Insert new sections
+            $sectionData = [];
+            foreach ($sections as $section) {
+                $sectionData[] = [
+                    'blog_id' => $id,
+                    'title' => $section['title'],
+                    'description' => $section['description'],
+                    'created_at' => now(),
+                    'updated_at' => now(),
+                ];
+            }
+            DB::table('sections')->insert($sectionData);
+
+            DB::commit();
+            return response()->json(['message' => 'Blog updated successfully', 'redirect' => route('dashboard.blog')], 200);
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return response()->json(['error' => $e->getMessage()], 500);
         }
-        DB::table('tags')->insert($tagData);
-        $sections = Sections::where('blog_id', $request->id)->get();
-        $sectionData = [];
-        foreach ($sections as $section) {
-            $sectionData[] = [
-                'blog_id' => $request->id,
-                'title' => $request->sections['title'],
-                'description' => $request->sections['description'],
-            ];
-        }
-        DB::table('sections')->insert($sectionData);
-        return response()->json(['message' => 'Blog updated successfully'], 200);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\blogs  $blogs
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(blogs $blogs)
+    public function destroy($id)
     {
-        //
+        try {
+            $blog = Blogs::findOrFail($id);
+
+            // Delete blog image if exists
+            if ($blog->picture && file_exists(public_path('assets/img/blogs/' . $blog->picture))) {
+                unlink(public_path('assets/img/blogs/' . $blog->picture));
+            }
+
+            // Delete related tags and sections
+            Tags::where('blog_id', $id)->delete();
+            Sections::where('blog_id', $id)->delete();
+
+            // Delete the blog
+            $blog->delete();
+
+            return redirect()->route('dashboard.blog')->with('success', 'Blog deleted successfully!');
+        } catch (\Exception $e) {
+            return redirect()->route('dashboard.blog')->with('error', 'Failed to delete blog: ' . $e->getMessage());
+        }
     }
 }

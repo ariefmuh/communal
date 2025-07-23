@@ -1,5 +1,5 @@
 TO DO LIST :
--Update CMS,
+-Update Blog CRUD (Fix Increment issue and User Flow/UX(User Experience))
 -Create email for communal
 -Create a homepage for all the blog
 -<3 Good luck Myself in the future
