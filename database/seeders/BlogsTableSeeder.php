@@ -33,7 +33,7 @@ class BlogsTableSeeder extends Seeder
             [
                 'user_id' => '1',
                 'title' => 'Membangun Jaringan Sosial yang Sehat di Lingkungan Komunitas',
-                'author' => 'Test',
+                'author' => 'Admin',
                 'picture' => 'blog2.jpg',
                 'opening' => 'Membangun Jaringan Sosial yang Sehat di Lingkungan Komunitas. Dalam kehidupan modern, memiliki jaringan sosial yang kuat dan sehat menjadi kunci penting untuk perkembangan personal dan profesional. Komunitas lokal berperan vital dalam menciptakan lingkungan yang mendukung tumbuhnya hubungan-hubungan bermakna antar individu.',
                 'created_at' => now(),
