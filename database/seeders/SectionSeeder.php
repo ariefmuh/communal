@@ -16,6 +16,7 @@ class SectionSeeder extends Seeder
     public function run()
     {
         DB::table('sections')->delete();
+        DB::statement('ALTER TABLE sections AUTO_INCREMENT = 1');
 
         // Masukkan data
         DB::table('sections')->insert([

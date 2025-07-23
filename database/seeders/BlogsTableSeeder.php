@@ -15,8 +15,9 @@ class BlogsTableSeeder extends Seeder
      */
     public function run()
     {
-        // Hapus data lama
+        // Hapus data lama dan reset auto increment
         DB::table('blogs')->delete();
+        DB::statement('ALTER TABLE blogs AUTO_INCREMENT = 1');
 
         // Masukkan data blog
         DB::table('blogs')->insert([
@@ -32,7 +33,7 @@ class BlogsTableSeeder extends Seeder
             [
                 'user_id' => '1',
                 'title' => 'Membangun Jaringan Sosial yang Sehat di Lingkungan Komunitas',
-                'author' => 'Admin',
+                'author' => 'Test',
                 'picture' => 'blog2.jpg',
                 'opening' => 'Membangun Jaringan Sosial yang Sehat di Lingkungan Komunitas. Dalam kehidupan modern, memiliki jaringan sosial yang kuat dan sehat menjadi kunci penting untuk perkembangan personal dan profesional. Komunitas lokal berperan vital dalam menciptakan lingkungan yang mendukung tumbuhnya hubungan-hubungan bermakna antar individu.',
                 'created_at' => now(),
