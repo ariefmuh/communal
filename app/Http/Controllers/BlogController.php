@@ -95,7 +95,7 @@ class BlogController extends Controller
             $blogId = DB::table('blogs')->insertGetId([
                 'user_id' => Auth::id() ?? '1',
                 'title' => $request->input('title'),
-                'author' => auth()->user()->name,
+                'author' => $request->input('author'),
                 'picture' => $fileName, // Only the filename is stored
                 'opening' => $request->input('description'),
                 'created_at' => now(),
@@ -218,7 +218,7 @@ class BlogController extends Controller
             $blog->update([
                 'user_id' => auth()->user()->id,
                 'title' => $request->input('title'),
-                'author' => auth()->user()->name,
+                'author' => $request->input('author'),
                 'opening' => $request->input('description'),
             ]);
 
