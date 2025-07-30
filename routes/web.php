@@ -20,7 +20,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [MainController::class, 'index'])->name('home');
-Route::get('/blogs/{id}', [BlogController::class, 'detail'])->name('blogs');
+Route::get('/blogs', [BlogController::class, 'view'])->name('blogs');
+Route::get('/blogs/{id}', [BlogController::class, 'detail'])->name('blogs.detail');
 
 Route::get('/test', function () {
     return 'Laravel is working';
@@ -53,6 +54,7 @@ Route::middleware('auth')->group(function () {
     // Dashboard Homepage
     Route::get('/dashboard/homepage', [HomepageController::class, 'index'])->name('dashboard.homepage');
     Route::post('/dashboard/homepage/update', [HomepageController::class, 'update'])->name('dashboard.homepage.update');
+    Route::post('/dashboard/homepage/store', [HomepageController::class, 'store'])->name('dashboard.homepage.store');
 
     Route::get('/dashboard/profile', [ProfileController::class, 'index'])->name('dashboard.profile');
     Route::post('/dashboard/profile/update', [ProfileController::class, 'update'])->name('dashboard.profile.update');

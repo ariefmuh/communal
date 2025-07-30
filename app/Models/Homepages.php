@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Homepages extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'name',
+        'title',
+        'picture',
+        'link',
+        'description',
+    ];
 }

@@ -26,6 +26,12 @@ class BlogController extends Controller
         return view("dashboard.blogs.main", compact("blogs"));
     }
 
+    public function view()
+    {
+        $blogs = Blogs::all();
+        return view("blogs.view", compact("blogs"));
+    }
+
     public function detail($id)
     {
         $blog = Blogs::find($id);
