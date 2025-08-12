@@ -1,4 +1,26 @@
 TO DO LIST :
 -Update Blog CRUD (Fix Increment issue and User Flow/UX(User Experience))
 -Create email for communal
--<3 Good luck Myself in the future
+-Nomor Whatspp ganti > Nomor HP PIC
+-Kategori Tambah Social Movement, Education, Games, Others...
+
+User feature permission : 
+- Program Communitas (Proposal kegiatan yang berisi nama kegiatan, deskripsi kegiatan, support apa yang diharapkan)
+- Submit data anggota minimal 50 orang yang dengan isi data (nama dan nomor handphone),
+- gallery foto (foto, caption),
+- Fitur Request MyTelkomsel Quiz
+
+Add Voice Of Customer (Saran)
+
+Hosting:
+Communal.id
+
+
+
+
+
+
+
+
+
+
