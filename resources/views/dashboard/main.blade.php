@@ -110,7 +110,7 @@ Dashboard Communal
                             <div class="col-6">: {{ Auth::user()->name }}</div>
                         </div>
                         <div class="row mb-3">
-                            <div class="col-3 fw-bold">Nomor Whatsapp</div>
+                            <div class="col-3 fw-bold">Nomor PIC</div>
                             <div class="col-6">: {{ Auth::user()->no_wa }}</div>
                         </div>
                         <div class="row mb-3">
@@ -136,7 +136,7 @@ Dashboard Communal
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="no_wa" class="col-sm-2 col-form-label">Nomor Whatsapp</label>
+                                <label for="no_wa" class="col-sm-2 col-form-label">Nomor PIC</label>
                                 <div class="col-sm-10">
                                     <input type="text" name="no_wa" class="form-control" id="no_wa" placeholder="08xxxxxxxxxx" value="{{ Auth::user()->no_wa }}">
                                 </div>

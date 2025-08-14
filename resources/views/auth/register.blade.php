@@ -116,7 +116,7 @@
                 </div>
 
                 <div class="mt-4">
-                    <input class="w-full px-3 py-2 border border-green-700 rounded bg-gray-200 text-black-300 focus:outline-none focus:border-gray-500 @error('no_wa') border-red-500 @enderror" id="no_wa" placeholder="Nomor WhatsApp" type="text" name="no_wa" value="{{ old('no_wa') }}" required autofocus oninput="this.value = this.value.replace(/[^0-9]/g, '')" />
+                    <input class="w-full px-3 py-2 border border-green-700 rounded bg-gray-200 text-black-300 focus:outline-none focus:border-gray-500 @error('no_wa') border-red-500 @enderror" id="no_wa" placeholder="Nomor PIC" type="text" name="no_wa" value="{{ old('no_wa') }}" required autofocus oninput="this.value = this.value.replace(/[^0-9]/g, '')" />
                     @error('no_wa')
                     <span class="text-red-500 text-sm mt-1">{{ $message }}</span>
                     @enderror
