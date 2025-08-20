@@ -109,8 +109,15 @@
 
                 <!-- Username -->
                 <div>
-                    <input class="w-full px-3 py-2 border border-green-700 rounded bg-gray-200 text-black-300 focus:outline-none focus:border-gray-500 @error('name') border-red-500 @enderror" id="name" placeholder="Name" type="text" name="name" value="{{ old('name') }}" required autofocus />
+                    <input class="w-full px-3 py-2 border border-green-700 rounded bg-gray-200 text-black-300 focus:outline-none focus:border-gray-500 @error('name') border-red-500 @enderror" id="name" placeholder="Nama Komunitas" type="text" name="name" value="{{ old('name') }}" required autofocus />
                     @error('name')
+                    <span class="text-red-500 text-sm mt-1">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <div class="mt-4">
+                    <input class="w-full px-3 py-2 border border-green-700 rounded bg-gray-200 text-black-300 focus:outline-none focus:border-gray-500 @error('nama_pic') border-red-500 @enderror" id="nama_pic" placeholder="Nama PIC" type="text" name="nama_pic" value="{{ old('nama_pic') }}" required autofocus />
+                    @error('nama_pic')
                     <span class="text-red-500 text-sm mt-1">{{ $message }}</span>
                     @enderror
                 </div>

@@ -48,9 +48,10 @@ Request Dashboard
             </tr>
         </thead>
         <tbody>
+            @php $i = 1 @endphp
             @foreach ($requests as $r)
             <tr>
-                <td>{{ $r->id }}</td>
+                <td>{{ $i++ }}</td>
                 <td>{{ $r->name }}</td>
                 <td>{{ $r->email }}</td>
                 <td>{{ $r->no_wa }}</td>

@@ -22,7 +22,11 @@ class BlogController extends Controller
      */
     public function index()
     {
-        $blogs = Blogs::all();
+        if (Auth::user()->role == 'superuser') {
+            $blogs = Blogs::all();
+        } else {
+            $blogs = Blogs::where('user_id', Auth::id())->get();
+        }
         return view("dashboard.blogs.main", compact("blogs"));
     }
 

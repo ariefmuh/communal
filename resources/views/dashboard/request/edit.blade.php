@@ -43,6 +43,9 @@ Edit Request
                                     <option value="Arts" {{ old('kategori', $request->category) == 'Arts' ? 'selected' : '' }}>Arts</option>
                                     <option value="Sports" {{ old('kategori', $request->category) == 'Sports' ? 'selected' : '' }}>Sports</option>
                                     <option value="Music" {{ old('kategori', $request->category) == 'Music' ? 'selected' : '' }}>Music</option>
+                                    <option value="Tambah Social Movement" {{ old('kategori') == 'Tambah Social Movement' ? 'selected' : '' }}>Tambah Social Movement</option>
+                                    <option value="Education" {{ old('kategori') == 'Education' ? 'selected' : '' }}>Education</option>
+                                    <option value="Games" {{ old('kategori') == 'Games' ? 'selected' : '' }}>Games</option>
                                     <option value="Others" {{ old('kategori', $request->category) == 'Others' ? 'selected' : '' }}>Others</option>
                                 </select>
                                 @error('kategori')

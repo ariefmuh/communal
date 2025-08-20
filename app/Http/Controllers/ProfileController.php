@@ -33,6 +33,7 @@ class ProfileController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
+            'nama_pic' => 'nullable|string|max:255',
             'no_wa' => 'nullable|string|max:20',
             'alamat' => 'nullable|string|max:255',
             'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:8192',
@@ -40,6 +41,7 @@ class ProfileController extends Controller
 
         $user = Auth::user();
         $user->name = $request->name;
+        $user->nama_pic = $request->nama_pic;
         $user->no_wa = $request->no_wa;
         $user->alamat = $request->alamat;
 

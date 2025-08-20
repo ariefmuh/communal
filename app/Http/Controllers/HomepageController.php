@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Homepages;
+use Illuminate\Support\Facades\Auth;
 
 class HomepageController extends Controller
 {

@@ -28,7 +28,7 @@ Dashboard Communal
                             <img class="profile-user-img img-fluid img-circle" src="{{ asset('assets/img/profile/'.Auth::user()->image) }}" alt="User profile picture">
                         </div>
                         <h3 class="profile-username text-center">{{ Auth::user()->name }}</h3>
-                        <p class="text-muted text-center">{{ Auth::user()->category }}</p>
+                        <p class="text-muted text-center">PIC: {{ Auth::user()->nama_pic ?? 'N/A' }}</p>
                         {{-- <ul class="list-group list-group-unbordered mb-3">
                             <li class="list-group-item">
                                 <b>Followers</b>
@@ -106,8 +106,17 @@ Dashboard Communal
                 <div class="tab-content">
                     <div class="active tab-pane" id="profile">
                         <div class="row mb-3">
+                            @if (Auth::user()->role == 'admin')
                             <div class="col-3 fw-bold">Nama</div>
                             <div class="col-6">: {{ Auth::user()->name }}</div>
+                            @else
+                            <div class="col-3 fw-bold">Nama Komunitas</div>
+                            <div class="col-6">: {{ Auth::user()->name }}</div>
+                            @endif
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-3 fw-bold">Nama PIC</div>
+                            <div class="col-6">: {{ Auth::user()->nama_pic ?? 'N/A' }}</div>
                         </div>
                         <div class="row mb-3">
                             <div class="col-3 fw-bold">Nomor PIC</div>
@@ -130,9 +139,15 @@ Dashboard Communal
                         <form id="update-profile-form" class="form-horizontal" action="{{ route('dashboard.profile.update') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group row">
-                                <label for="inputName" class="col-sm-2 col-form-label">Name</label>
+                                <label for="inputName" class="col-sm-2 col-form-label">Nama Komunitas</label>
                                 <div class="col-sm-10">
-                                    <input type="text" name="name" class="form-control" id="inputName" placeholder="Name" value="{{ Auth::user()->name }}">
+                                    <input type="text" name="name" class="form-control" id="inputName" placeholder="Nama Komunitas" value="{{ Auth::user()->name }}">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="nama_pic" class="col-sm-2 col-form-label">Nama PIC</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="nama_pic" class="form-control" id="nama_pic" placeholder="Nama PIC" value="{{ Auth::user()->nama_pic }}">
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -175,6 +190,9 @@ Dashboard Communal
                                         <option value="Arts" {{ old('kategori') == 'Arts' ? 'selected' : '' }}>Arts</option>
                                         <option value="Sports" {{ old('kategori') == 'Sports' ? 'selected' : '' }}>Sports</option>
                                         <option value="Music" {{ old('kategori') == 'Music' ? 'selected' : '' }}>Music</option>
+                                        <option value="Tambah Social Movement" {{ old('kategori') == 'Tambah Social Movement' ? 'selected' : '' }}>Tambah Social Movement</option>
+                                        <option value="Education" {{ old('kategori') == 'Education' ? 'selected' : '' }}>Education</option>
+                                        <option value="Games" {{ old('kategori') == 'Games' ? 'selected' : '' }}>Games</option>
                                         <option value="Others" {{ old('kategori') == 'Others' ? 'selected' : '' }}>Others</option>
                                     </select>
                                     @error('kategori')

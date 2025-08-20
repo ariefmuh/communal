@@ -6,6 +6,9 @@ use App\Http\Controllers\RequestController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\HomepageController;
+use App\Http\Controllers\TeamMemberController;
+use App\Http\Controllers\CommunityProgramController;
+use App\Http\Controllers\GalleryController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -58,6 +61,29 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/dashboard/profile', [ProfileController::class, 'index'])->name('dashboard.profile');
     Route::post('/dashboard/profile/update', [ProfileController::class, 'update'])->name('dashboard.profile.update');
+
+    // Community Programs
+    Route::get('/dashboard/programs', [CommunityProgramController::class, 'index'])->name('dashboard.programs');
+    Route::get('/dashboard/programs/create', [CommunityProgramController::class, 'create'])->name('dashboard.programs.create');
+    Route::post('/dashboard/programs', [CommunityProgramController::class, 'store'])->name('dashboard.programs.store');
+    Route::get('/dashboard/programs/{id}', [CommunityProgramController::class, 'show'])->name('dashboard.programs.show');
+    Route::post('/dashboard/programs/{id}/approve', [CommunityProgramController::class, 'approve'])->name('dashboard.programs.approve');
+    Route::post('/dashboard/programs/{id}/reject', [CommunityProgramController::class, 'reject'])->name('dashboard.programs.reject');
+
+    // Team Members
+    Route::get('/dashboard/members', [TeamMemberController::class, 'index'])->name('dashboard.members');
+    Route::get('/dashboard/members/create', [TeamMemberController::class, 'create'])->name('dashboard.members.create');
+    Route::get('/dashboard/members/{id}', [TeamMemberController::class, 'show'])->name('dashboard.members.show');
+    Route::post('/dashboard/members', [TeamMemberController::class, 'store'])->name('dashboard.members.store');
+    Route::delete('/dashboard/members/{id}', [TeamMemberController::class, 'destroy'])->name('dashboard.members.destroy');
+
+    // Gallery
+    Route::get('/dashboard/gallery', [GalleryController::class, 'index'])->name('dashboard.gallery');
+    Route::get('/dashboard/gallery/create', [GalleryController::class, 'create'])->name('dashboard.gallery.create');
+    Route::get('/dashboard/gallery/{id}', [GalleryController::class, 'show'])->name('dashboard.gallery.show');
+    Route::post('/dashboard/gallery', [GalleryController::class, 'store'])->name('dashboard.gallery.store');
+    Route::delete('/dashboard/gallery/{id}', [GalleryController::class, 'destroy'])->name('dashboard.gallery.destroy');
+
 });
 
 require __DIR__ . '/auth.php';

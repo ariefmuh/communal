@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Requests;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
@@ -164,8 +165,21 @@ class RequestController extends Controller
      */
     public function accept(int $id)
     {
-        $data = Requests::find($id)->update(['progress' => 1]);
-        return redirect()->back()->with('success', 'Request accepted successfully');
+        $request = Requests::find($id);
+
+        if (!$request) {
+            return redirect()->back()->with('error', 'Request not found');
+        }
+
+        $request->update(['progress' => 1]);
+
+        $user = User::find($request->user_id);
+        if ($user) {
+            $user->update(['category' => $request->category]);
+            $user->update(['role' => 'Team Leader']);
+        }
+
+        return redirect()->back()->with('success', 'Request accepted successfully and user promoted to Team Leader');
     }
 
     /**
