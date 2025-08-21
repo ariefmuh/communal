@@ -12,12 +12,12 @@
             <div class="row align-items-center mb-5">
                 <div class="col-lg-6 mb-4 mb-lg-0">
                     <div class="hero-image">
-                        <img src="{{ asset('assets/img/bigLogo.png') }}" alt="Business Growth" class="img-fluid" loading="lazy">
+                        <img src="{{ asset('assets/img/logo_the_communal.png') }}" alt="Business Growth" class="img-fluid" loading="lazy">
                     </div>
                 </div>
                 {{-- <div class="col-lg-6">
                     <div class="hero-image">
-                        <img src="{{ asset('invent/assets/img/illustration/illustration-16.webp') }}" alt="Business Growth" class="img-fluid" loading="lazy">
+                        <img src="{{ asset('invent/assets/img/illustration/picture1.jpg') }}" alt="Business Growth" class="img-fluid" loading="lazy">
                     </div>
                 </div> --}}
             </div>
@@ -70,15 +70,15 @@
                 <div class="col-lg-6 about-images" data-aos="fade-up" data-aos-delay="200">
                     <div class="row gy-4">
                         <div class="col-lg-6">
-                            <img src="{{ asset('invent/assets/img/about/about-portrait-1.webp') }}" class="img-fluid" alt="">
+                            <img src="{{ asset('assets/img/picture1.jpg') }}" class="img-fluid" alt="">
                         </div>
                         <div class="col-lg-6">
                             <div class="row gy-4">
                                 <div class="col-lg-12">
-                                    <img src="{{ asset('invent/assets/img/about/about-8.webp')}}" class="img-fluid" alt="">
+                                    <img src="{{ asset('assets/img/picture2.jpg')}}" class="img-fluid" alt="">
                                 </div>
                                 <div class="col-lg-12">
-                                    <img src="{{ asset('invent/assets/img/about/about-12.webp')}}" class="img-fluid" alt="">
+                                    <img src="{{ asset('assets/img/picture3.jpg')}}" class="img-fluid" alt="">
                                 </div>
                             </div>
                         </div>

@@ -16,7 +16,39 @@ class HomepageController extends Controller
 
     public function update(Request $request)
     {
-        return response()->json(['message' => 'Homepage updated successfully'], 200);
+        $request->validate([
+            'id' => 'required|exists:homepages,id',
+            'name' => 'required|string|max:255',
+            'title' => 'nullable|string|max:255',
+            'picture' => 'nullable|file|mimes:jpg,jpeg,png,gif,webp,pdf|max:4096',
+            'link' => 'nullable|string|max:255',
+            'description' => 'nullable|string',
+        ]);
+
+        $homepage = Homepages::findOrFail($request->id);
+
+        $data = [
+            'name' => $request->name,
+            'title' => $request->title,
+            'link' => $request->link,
+            'description' => $request->description,
+        ];
+
+        if ($request->hasFile('picture')) {
+            $picture = $request->file('picture');
+            $pictureName = time() . '_' . uniqid() . '.' . $picture->getClientOriginalExtension();
+            $picture->move(public_path('assets/img'), $pictureName);
+
+            // Delete old file if exists
+            if ($homepage->picture && file_exists(public_path('assets/img/' . $homepage->picture))) {
+                @unlink(public_path('assets/img/' . $homepage->picture));
+            }
+            $data['picture'] = $pictureName;
+        }
+
+        $homepage->update($data);
+
+        return redirect()->route('dashboard.homepage')->with('success', 'Homepage updated successfully');
     }
 
     public function store(Request $request)
