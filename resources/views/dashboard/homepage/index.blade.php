@@ -85,9 +85,10 @@ Request Dashboard
                 </td>
                 <td>
                     <div class="d-flex gap-1">
-                        <a href="{{ route('dashboard.request.edit', $h->id) }}" class="btn btn-primary btn-sm">
+                        <!-- Edit button triggers edit modal -->
+                        <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editHomepageModal{{$h->id}}">
                             <i class="fas fa-edit"></i> Edit
-                        </a>
+                        </button>
                         <form action="{{ route('dashboard.request.destroy', $h->id) }}" method="POST" style="display: inline;" onsubmit="return confirm('Are you sure you want to delete this request?')">
                             @csrf
                             @method('DELETE')
@@ -159,6 +160,58 @@ Request Dashboard
             </div>
         </div>
     </div>
+
+    <!-- Edit Homepage Modals -->
+    @foreach ($homepages as $h)
+    <div class="modal fade" id="editHomepageModal{{$h->id}}" tabindex="-1" aria-labelledby="editHomepageModalLabel{{$h->id}}" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editHomepageModalLabel{{$h->id}}">Edit Homepage #{{ $h->id }}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="{{ route('dashboard.homepage.update') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <input type="hidden" name="id" value="{{ $h->id }}">
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label class="form-label">Name</label>
+                            <input type="text" class="form-control" name="name" value="{{ $h->name }}">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Title</label>
+                            <input type="text" class="form-control" name="title" value="{{ $h->title }}">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Current Picture</label><br>
+                            @if($h->picture)
+                                <small>{{ $h->picture }}</small>
+                            @else
+                                <small>No file</small>
+                            @endif
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Replace Picture (leave empty to keep)</label>
+                            <input type="file" class="form-control" name="picture" accept=".pdf,image/*">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Link</label>
+                            <input type="text" class="form-control" name="link" value="{{ $h->link }}">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Description</label>
+                            <textarea class="form-control" name="description" rows="3">{{ $h->description }}</textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Update</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    @endforeach
 </section>
 
 @section('scripts')

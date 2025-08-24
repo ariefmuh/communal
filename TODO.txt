@@ -11,7 +11,7 @@ Add Voice Of Customer (Saran)
 2. Alamat Tambah Kota
 
 Hosting:
-Communal.id
+TheCommunal.id
 
 
 
