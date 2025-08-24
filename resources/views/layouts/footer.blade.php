@@ -3,7 +3,7 @@
         <div class="row gy-4">
         <div class="col-lg-4 col-md-6 footer-about">
             <a href="index.html" class="logo d-flex align-items-center">
-            <span class="sitename">Communal</span>
+            <span class="sitename">THECommunal</span>
             </a>
             <div class="footer-contact pt-3">
             <p>Jl. A. P. Pettarani No.3, Mannuruki, Kec. Tamalate</p>
@@ -33,7 +33,7 @@
         </div>
     </div>
     <div class="container copyright text-center mt-4">
-        <p>© <span>Copyright</span> <strong class="px-1 sitename">Communal</strong> <span>All Rights Reserved</span></p>
+        <p>© <span>Copyright</span> <strong class="px-1 sitename">THECommunal</strong> <span>All Rights Reserved</span></p>
 
     </div>
 </footer>

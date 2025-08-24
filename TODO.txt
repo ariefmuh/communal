@@ -1,10 +1,10 @@
 TO DO LIST :
--Update Blog CRUD (Fix Increment issue and User Flow/UX(User Experience))
--Create email for communal
+-Create email for communal (sosial media like ig, facebook, twitter, and thread)
 
 Team leader feature permission :
 - Fitur Request MyTelkomsel Quiz
-
+- Request can use pptx
+- Program tambah komentar 
 Add Voice Of Customer (Saran)
 
 1. Member upload excel format dengan (nama, nomor_hp, alamat, kota, kecamatan)

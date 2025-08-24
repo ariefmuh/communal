@@ -2,7 +2,9 @@
     <div class="container position-relative d-flex align-items-center justify-content-between">
 
         <a href="#" class="logo d-flex align-items-center me-auto me-xl-0">
-            <img src="{{ asset('assets/img/logo.png') }}" alt="Logo">
+            <img src="{{ asset('assets/img/Telkomsel_Logo.png') }}" alt="Logo">
+            <span style="width:1px;height:24px;background:#000000;margin:0 12px;display:inline-block;"></span>
+            <img src="{{ asset('assets/img/logo_the_communal.png') }}" alt="Logo">
         </a>
 
         <nav id="navmenu" class="navmenu">
