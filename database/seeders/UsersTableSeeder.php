@@ -22,6 +22,7 @@ class UsersTableSeeder extends Seeder
         // Masukkan data user baru
         DB::table('users')->insert([
             'name' => 'superuser',
+            'nama_pic' => 'superuser',
             'no_wa' => '081240907134',
             'alamat' => 'Pesona Taman Dahlia 2 A17',
             'role' => "superuser",
@@ -34,6 +35,7 @@ class UsersTableSeeder extends Seeder
 
         DB::table('users')->insert([
             'name' => 'test',
+            'nama_pic' => 'test',
             'no_wa' => '0123456789',
             'alamat' => 'The Earth',
             'role' => "guest",
@@ -46,6 +48,7 @@ class UsersTableSeeder extends Seeder
 
         DB::table('users')->insert([
             'name' => 'Team Leader',
+            'nama_pic' => 'Team Leader',
             'no_wa' => '0123456789',
             'alamat' => 'The Earth',
             'role' => "TL",

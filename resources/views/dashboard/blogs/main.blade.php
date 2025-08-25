@@ -72,7 +72,7 @@ Blog Dashboard
                     <td>
                         <div class="btn-group" role="group">
                             {{-- View Blog Button --}}
-                            <a href="{{ route('blogs', $b->id) }}" class="btn btn-success btn-sm" target="_blank">
+                            <a href="{{ route('blogs.detail', $b->id) }}" class="btn btn-success btn-sm" target="_blank">
                                 <i class="fas fa-eye"></i> View
                             </a>
 
