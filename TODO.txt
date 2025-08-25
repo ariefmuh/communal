@@ -10,6 +10,8 @@ Add Voice Of Customer (Saran)
 1. Member upload excel format dengan (nama, nomor_hp, alamat, kota, kecamatan)
 2. Alamat Tambah Kota
 
+- Nama Community jadi Username, (?) perlu dibuatkan kolom baru untuk nama community
+
 Hosting:
 TheCommunal.id
 

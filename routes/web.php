@@ -9,6 +9,7 @@ use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\TeamMemberController;
 use App\Http\Controllers\CommunityProgramController;
 use App\Http\Controllers\GalleryController;
+use App\Http\Controllers\QuizController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -77,13 +78,24 @@ Route::middleware('auth')->group(function () {
     Route::post('/dashboard/members', [TeamMemberController::class, 'store'])->name('dashboard.members.store');
     Route::delete('/dashboard/members/{id}', [TeamMemberController::class, 'destroy'])->name('dashboard.members.destroy');
 
+    // Quizzes
+    Route::get('/dashboard/quizzes', [QuizController::class, 'index'])->name('dashboard.quizzes');
+    Route::get('/dashboard/quizzes/create', [QuizController::class, 'create'])->name('dashboard.quizzes.create');
+    Route::post('/dashboard/quizzes', [QuizController::class, 'store'])->name('dashboard.quizzes.store');
+    Route::get('/dashboard/quizzes/{id}', [QuizController::class, 'show'])->name('dashboard.quizzes.show');
+    Route::get('/dashboard/quizzes/{id}/edit', [QuizController::class, 'edit'])->name('dashboard.quizzes.edit');
+    Route::put('/dashboard/quizzes/{id}', [QuizController::class, 'update'])->name('dashboard.quizzes.update');
+    Route::delete('/dashboard/quizzes/{id}', [QuizController::class, 'destroy'])->name('dashboard.quizzes.destroy');
+    Route::post('/dashboard/quizzes/{id}/request', [QuizController::class, 'requestQuiz'])->name('dashboard.quizzes.request');
+    Route::get('/dashboard/quizzes/{id}/export', [QuizController::class, 'export'])->name('dashboard.quizzes.export');
+
+
     // Gallery
     Route::get('/dashboard/gallery', [GalleryController::class, 'index'])->name('dashboard.gallery');
     Route::get('/dashboard/gallery/create', [GalleryController::class, 'create'])->name('dashboard.gallery.create');
     Route::get('/dashboard/gallery/{id}', [GalleryController::class, 'show'])->name('dashboard.gallery.show');
     Route::post('/dashboard/gallery', [GalleryController::class, 'store'])->name('dashboard.gallery.store');
     Route::delete('/dashboard/gallery/{id}', [GalleryController::class, 'destroy'])->name('dashboard.gallery.destroy');
-
 });
 
 require __DIR__ . '/auth.php';

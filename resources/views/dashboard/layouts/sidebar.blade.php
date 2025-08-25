@@ -3,8 +3,8 @@
 
     // Define permissions for each role
     $permissions = [
-        'superuser' => ['home', 'homepage', 'request', 'blog', 'programs', 'members', 'gallery', 'programs_management', 'members_management'],
-        'Team Leader' => ['home', 'programs', 'members', 'gallery'],
+        'superuser' => ['home', 'homepage', 'request', 'blog', 'programs', 'members', 'quiz', 'gallery', 'programs_management', 'members_management'],
+        'Team Leader' => ['home', 'programs', 'members', 'quiz', 'gallery'],
         'guest' => ['home', 'request']
     ];
 
@@ -41,6 +41,12 @@
             'title' => 'Team Members',
             'type' => 'single'
         ],
+        'quiz' => [
+            'route' => 'dashboard.quizzes',
+            'icon' => 'fa-solid fa-clipboard-list',
+            'title' => 'Quiz',
+            'type' => 'single'
+        ],
         'gallery' => [
             'route' => 'dashboard.gallery',
             'icon' => 'fa-solid fa-images',
@@ -59,8 +65,22 @@
         return in_array($key, $permissions[$userRole] ?? []);
     }, ARRAY_FILTER_USE_KEY);
 
-    function isRouteActive($route, $children = null) {
-        if ($children) {
+    if (!function_exists('isRouteActive')) {
+        function isRouteActive($route, $children = null) {
+            if ($children) {
+                foreach ($children as $child) {
+                    if (Route::currentRouteName() == $child['route']) {
+                        return true;
+                    }
+                }
+                return false;
+            }
+            return Route::currentRouteName() == $route;
+        }
+    }
+
+    if (!function_exists('isDropdownOpen')) {
+        function isDropdownOpen($children) {
             foreach ($children as $child) {
                 if (Route::currentRouteName() == $child['route']) {
                     return true;
@@ -68,16 +88,6 @@
             }
             return false;
         }
-        return Route::currentRouteName() == $route;
-    }
-
-    function isDropdownOpen($children) {
-        foreach ($children as $child) {
-            if (Route::currentRouteName() == $child['route']) {
-                return true;
-            }
-        }
-        return false;
     }
 @endphp
 
